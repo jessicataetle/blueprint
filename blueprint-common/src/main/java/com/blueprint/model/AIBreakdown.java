@@ -4,7 +4,6 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -23,7 +22,6 @@ public class AIBreakdown {
     @Id
     private UUID id;
 
-    @Column("component_version_id")
     private UUID componentVersionId;  // Foreign key: many breakdowns per version
 
     private String prompt;  // What we asked the LLM (for reproducibility)
@@ -32,9 +30,7 @@ public class AIBreakdown {
 
     private String model;  // LLM model used (e.g., "gemini-1.5-pro", "claude-sonnet-4-6")
 
-    @Column("tokens_used")
     private Integer tokensUsed;  // Track cost and quota usage
 
-    @Column("created_at")
     private LocalDateTime createdAt;  // When this explanation was generated
 }

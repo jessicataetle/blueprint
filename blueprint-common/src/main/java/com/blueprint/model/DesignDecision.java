@@ -4,7 +4,6 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -23,11 +22,9 @@ public class DesignDecision {
     @Id
     private UUID id;
 
-    @Column("component_version_id")
     private UUID componentVersionId;  // Foreign key: many decisions per version
 
     private String content;  // Why this design was chosen (tradeoffs, constraints)
 
-    @Column("created_at")
     private LocalDateTime createdAt;  // When this decision was documented
 }

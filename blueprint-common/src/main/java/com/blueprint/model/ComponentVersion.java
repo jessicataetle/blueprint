@@ -4,7 +4,6 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -24,16 +23,13 @@ public class ComponentVersion {
     @Id
     private UUID id;
 
-    @Column("component_id")
     private UUID componentId;  // Foreign key: many versions per component
 
-    @Column("version_number")
     private Integer versionNumber;  // Immutable sequence (1, 2, 3, ...)
 
     private String content;  // Full code/SQL/config at this version
 
     private String diff;  // Unified diff from previous (computed once, immutable)
 
-    @Column("created_at")
     private LocalDateTime createdAt;  // Only creation time (versions don't update)
 }

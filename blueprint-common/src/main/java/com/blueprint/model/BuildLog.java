@@ -4,7 +4,6 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -23,13 +22,10 @@ public class BuildLog {
     @Id
     private UUID id;
 
-    @Column("agent_run_id")
     private UUID agentRunId;  // Groups all events from single agent run
 
-    @Column("system_id")
     private UUID systemId;  // Which system was extended (nullable if query failed)
 
-    @Column("component_id")
     private UUID componentId;  // Which component was extended (nullable if query failed)
 
     private String action;  // What was done: "migration", "endpoint", "test", "decision", "breakdown"
@@ -38,6 +34,5 @@ public class BuildLog {
 
     private String output;  // On failure: error message. On success: generated code diff
 
-    @Column("created_at")
     private LocalDateTime createdAt;  // Timestamp of this log entry
 }
