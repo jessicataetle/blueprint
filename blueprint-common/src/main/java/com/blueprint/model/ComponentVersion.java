@@ -10,6 +10,12 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Immutable history of a component's evolution. Each version is append-only.
+ * content: Full code/schema/migration at this version
+ * diff: Unified diff from previous version (computed once, stored for history)
+ * Unique constraint on (component_id, version_number) prevents duplicate versions
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,15 +25,15 @@ public class ComponentVersion {
     private UUID id;
 
     @Column("component_id")
-    private UUID componentId;
+    private UUID componentId;  // Foreign key: many versions per component
 
     @Column("version_number")
-    private Integer versionNumber;
+    private Integer versionNumber;  // Immutable sequence (1, 2, 3, ...)
 
-    private String content;
+    private String content;  // Full code/SQL/config at this version
 
-    private String diff;
+    private String diff;  // Unified diff from previous (computed once, immutable)
 
     @Column("created_at")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt;  // Only creation time (versions don't update)
 }

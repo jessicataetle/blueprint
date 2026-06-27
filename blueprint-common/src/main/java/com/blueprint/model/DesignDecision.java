@@ -10,6 +10,11 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Free-text design tradeoff notes for a component version.
+ * Attached to a specific version to show reasoning at that point in time.
+ * Example: "Used sliding window over token bucket for simplicity at scale"
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,10 +24,10 @@ public class DesignDecision {
     private UUID id;
 
     @Column("component_version_id")
-    private UUID componentVersionId;
+    private UUID componentVersionId;  // Foreign key: many decisions per version
 
-    private String content;
+    private String content;  // Why this design was chosen (tradeoffs, constraints)
 
     @Column("created_at")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt;  // When this decision was documented
 }
