@@ -40,7 +40,7 @@ Instead of reading about system design, you have:
 ### 2. Start PostgreSQL
 
 ```bash
-cd /Users/jtaetle/Documents/GitHub/blueprint
+cd blueprint  # Navigate to the project directory
 docker-compose up -d
 ```
 
